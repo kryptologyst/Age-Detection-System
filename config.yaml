@@ -1,0 +1,60 @@
+# Modern Age Detection System - Configuration
+
+detection:
+  confidence_threshold: 0.5
+  preferred_method: "ensemble"
+  max_faces: 10
+  face_detection_confidence: 0.6
+
+video:
+  frame_skip: 5
+  max_frames: 1000
+  output_format: "mp4"
+  fps: 20
+
+batch:
+  max_images: 100
+  supported_formats: [".jpg", ".jpeg", ".png", ".bmp"]
+  parallel_processing: true
+
+database:
+  path: "age_detection.db"
+  backup_interval: 24  # hours
+  max_entries: 10000
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "age_detection.log"
+
+ui:
+  streamlit:
+    port: 8501
+    host: "0.0.0.0"
+    theme: "light"
+  
+  gradio:
+    port: 7860
+    host: "0.0.0.0"
+    share: false
+
+models:
+  deepface:
+    enabled: true
+    backend: "opencv"
+    enforce_detection: false
+  
+  mediapipe:
+    enabled: true
+    model_selection: 0
+    min_detection_confidence: 0.5
+  
+  opencv:
+    enabled: true
+    confidence_threshold: 0.5
+
+performance:
+  use_gpu: true
+  batch_size: 1
+  cache_models: true
+  optimize_memory: true
